@@ -12,11 +12,18 @@ import {
 class Lesson10quiz extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {salutation: 'Mr', name: ''};
+    this.state = {salutation: 'Mr', name: '', email: '', des: 'Program Chair'};
   }
   render() {
     let message =
-      'Email sent to ' + this.state.salutation + ' ' + this.state.name;
+      'Email sent to ' +
+      this.state.salutation +
+      ' ' +
+      this.state.name +
+      ' (' +
+      this.state.des +
+      ') at ' +
+      this.state.email;
     return (
       <View>
         <Text>Salutation:</Text>
@@ -32,6 +39,18 @@ class Lesson10quiz extends React.Component {
           style={{borderColor: 'black', borderWidth: 1}}
           onChangeText={text => this.setState({name: text})}
         />
+        <Text>Email Address:</Text>
+        <TextInput
+          style={{borderColor: 'black', borderWidth: 1}}
+          onChangeText={text => this.setState({email: text})}
+        />
+        <Text>Designation:</Text>
+        <Picker
+          onValueChange={itemValue => this.setState({des: itemValue})}
+          selectedValue={this.state.des}>
+          <Picker.Item label="Program Chair" value="Program Chair" />
+          <Picker.Item label="Asst Program Chair" value="Asst Program Chair" />
+        </Picker>
         <TouchableHighlight onPress={() => Alert.alert(message)}>
           <Image source={require('./src/images/email.png')} />
         </TouchableHighlight>
